@@ -1,0 +1,120 @@
+# Git과 GitHub 기초 정리
+
+## 1. 버전 관리의 필요성
+
+버전 관리는 파일이나 소스 코드의 변경 이력을 기록하고 관리하는 방법이다.
+
+-   이전 작업 내용으로 되돌릴 수 있다.
+-   누가, 언제, 무엇을 수정했는지 확인할 수 있다.
+-   여러 사람이 함께 작업할 때 변경 사항을 관리할 수 있다.
+-   파일을 여러 개 복사하지 않고 체계적으로 관리할 수 있다.
+
+## 2. Git 기본 개념
+
+Git은 소스 코드의 변경 이력을 기록하고 관리하는 분산 버전 관리
+시스템이다.
+
+-   **Repository(저장소):** 프로젝트와 변경 이력을 저장하는 공간
+-   **Working Directory:** 실제 파일을 수정하는 공간
+-   **Staging Area:** 커밋할 변경 사항을 임시로 선택하는 공간
+-   **Commit:** 변경 사항을 하나의 기록으로 저장하는 것
+-   **Branch:** 기존 작업과 분리해 독립적으로 작업하는 가지
+-   **Merge:** 브랜치에서 작업한 내용을 다른 브랜치에 합치는 것
+
+## 3. Git 설치와 초기 설정
+
+Git 공식 홈페이지에서 운영체제에 맞는 Git을 설치한다. 설치 후 Git Bash
+또는 터미널에서 사용자 정보를 설정한다.
+
+``` bash
+git --version
+git config --global user.name "내 이름"
+git config --global user.email "내 이메일"
+git config --global --list
+```
+
+`user.name`과 `user.email`은 커밋 기록에 표시되는 작성자 정보이다.
+
+## 4. 로컬에서 Git 사용하기
+
+프로젝트 폴더에서 다음 명령어를 순서대로 실행한다.
+
+``` bash
+cd 프로젝트폴더
+git init
+git status
+git add .
+git commit -m "첫 번째 커밋"
+git log --oneline
+```
+
+  명령어                     기능
+  -------------------------- ----------------------------------
+  `git init`                 Git 저장소 생성
+  `git status`               파일 변경 상태 확인
+  `git add .`                변경 파일을 스테이징 영역에 추가
+  `git commit -m "메시지"`   변경 사항 기록
+  `git log`                  커밋 기록 확인
+  `git diff`                 수정된 내용 확인
+
+## 5. 브랜치 이해하기
+
+브랜치는 기존 작업에 영향을 주지 않고 새로운 기능이나 수정 사항을
+독립적으로 작업할 수 있게 해 준다.
+
+-   `main`: 일반적으로 기본 브랜치 이름
+-   기능별 브랜치: 새로운 기능을 개발하거나 수정할 때 사용하는 별도 작업
+    공간
+
+``` bash
+git branch              # 브랜치 목록 확인
+git branch feature      # feature 브랜치 생성
+git switch feature      # feature 브랜치로 이동
+git switch -c feature   # 생성과 이동을 한 번에 실행
+git switch main         # main으로 이동
+git merge feature       # feature 내용을 현재 브랜치에 병합
+```
+
+## 6. GitHub 기초
+
+GitHub는 Git으로 관리하는 저장소를 인터넷에 올리고 다른 사람과
+공유·협업할 수 있는 웹 서비스이다.
+
+-   **Local Repository:** 내 컴퓨터에 있는 저장소
+-   **Remote Repository:** GitHub 등 원격 서버에 있는 저장소
+-   **Push:** 로컬 커밋 내용을 원격 저장소에 올리는 것
+-   **Pull:** 원격 저장소의 변경 내용을 내려받는 것
+-   **Clone:** 원격 저장소를 내 컴퓨터에 복사하는 것
+-   **README.md:** 프로젝트의 목적과 사용 방법 등을 설명하는 문서
+
+### GitHub에 연결하고 Push 하기
+
+GitHub에서 새 Repository를 만든 뒤 저장소 주소를 복사한다. 로컬
+저장소에서 첫 커밋까지 완료했다면 아래 명령어를 실행한다.
+
+``` bash
+git branch -M main
+git remote add origin https://github.com/내아이디/저장소이름.git
+git push -u origin main
+```
+
+`내아이디`와 `저장소이름`은 본인의 실제 GitHub 정보로 바꿔야 한다.
+
+이후 파일을 수정해 다시 올릴 때는 다음 순서로 실행한다.
+
+``` bash
+git add .
+git commit -m "학습 내용 정리"
+git push
+```
+
+## 7. 오늘 학습 내용 핵심 정리
+
+-   Git은 코드의 변경 이력을 관리하는 버전 관리 도구이다.
+-   GitHub는 Git 저장소를 온라인에 저장하고 공유하는 서비스이다.
+-   `add`는 변경 파일을 커밋 대상으로 선택하는 단계이다.
+-   `commit`은 변경 내용을 로컬 저장소에 기록하는 단계이다.
+-   `push`는 로컬 저장소의 커밋을 원격 저장소에 업로드하는 단계이다.
+-   브랜치는 독립적인 작업 공간을 만들어 기능 개발과 협업을 돕는다.
+
+**기본 작업 흐름:** 파일 수정 → `git add` → `git commit` → `git push`
